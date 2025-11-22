@@ -328,7 +328,7 @@ docker rm bot-gpt-backend mongodb
 - API Docs: `http://localhost:8000/docs`
 - Frontend: `http://localhost:8501`
 - MongoDB: `localhost:27017`
-```
+
 
 ***
 
