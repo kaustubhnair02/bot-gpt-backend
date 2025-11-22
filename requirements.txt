@@ -1,0 +1,31 @@
+# FastAPI
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic
+pydantic-settings==2.1.0
+python-multipart==0.0.6
+
+# MongoDB
+motor==3.3.2
+pymongo==4.6.0
+
+# LLM
+groq==0.11.0
+httpx==0.27.0
+
+# RAG
+scikit-learn
+# RAG - FIXED VERSIONS
+sentence-transformers
+huggingface-hub==0.25.2
+transformers
+torch
+numpy
+pypdf
+
+# Utils
+python-dotenv
+
+# Frontend
+streamlit==1.29.0
+requests==2.31.0
