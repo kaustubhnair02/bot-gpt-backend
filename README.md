@@ -19,26 +19,6 @@ A production-ready conversational AI backend with RAG (Retrieval-Augmented Gener
 - 🔍 **Semantic Search**: TF-IDF based document retrieval
 - 📝 **Comprehensive Logging**: File and console logging with rotation
 
-## 🏗️ Architecture
-
-┌─────────────┐
-│ Streamlit │ ← User Interface
-│ UI │
-└──────┬──────┘
-│ HTTP/REST
-┌──────▼──────┐
-│ FastAPI │ ← API Layer
-│ Backend │
-└──────┬──────┘
-│
-┌───┴────┬──────────┬─────────┐
-│ │ │ │
-┌──▼──┐ ┌──▼───┐ ┌────▼────┐ ┌─▼──────┐
-│ LLM │ │ RAG │ │ MongoDB │ │ Logging│
-│Groq │ │Service│ │Database │ │ System │
-└─────┘ └──────┘ └─────────┘ └────────┘
-
-text
 
 ## 📋 Prerequisites
 
@@ -53,20 +33,17 @@ text
 git clone <your-repo-url>
 cd bot-gpt-backend
 
-text
 
 ### 2. Create Virtual Environment
 
 python3 -m venv botgpt-env
 source botgpt-env/bin/activate # On Windows: botgpt-env\Scripts\activate
 
-text
 
 ### 3. Install Dependencies
 
 pip install -r requirements.txt
 
-text
 
 ### 4. Setup MongoDB
 
@@ -104,7 +81,6 @@ text
 
 python main.py
 
-text
 
 Backend will start at: `http://localhost:8000`
 
@@ -117,31 +93,32 @@ Open a new terminal:
 cd frontend
 streamlit run app.py
 
-text
 
 Frontend will open at: `http://localhost:8501`
 
+````markdown
 ## 📁 Project Structure
 
+```
 bot-gpt-backend/
-├── main.py # FastAPI app with all routes
-├── database.py # MongoDB operations & CRUD
-├── llm_service.py # LLM integration (Groq)
-├── rag_service.py # RAG pipeline (TF-IDF + retrieval)
-├── models.py # Pydantic schemas
-├── config.py # Settings & configuration
-├── requirements.txt # Python dependencies
-├── .env # Environment variables (create this)
-├── .env.example # Example environment file
-├── logs/ # Application logs (auto-created)
-│ └── bot_gpt.log
+├── main.py                 # FastAPI app with all routes
+├── database.py             # MongoDB operations & CRUD
+├── llm_service.py          # LLM integration (Groq)
+├── rag_service.py          # RAG pipeline (embeddings + retrieval)
+├── models.py               # Pydantic schemas
+├── config.py               # Settings & configuration
+├── requirements.txt        # Python dependencies
+├── .env                    # Environment variables (create this)
+├── .env.example            # Example environment file
+├── logs/                   # Application logs (auto-created)
+│   └── bot_gpt.log
 ├── frontend/
-│ └── app.py # Streamlit UI
-├── Dockerfile # Docker configuration (optional)
-├── docker-compose.yml # Docker Compose (optional)
-└── README.md # This file
-
-text
+│   └── app.py             # Streamlit UI
+├── Dockerfile             # Docker configuration (optional)
+├── docker-compose.yml     # Docker Compose (optional)
+└── README.md              # This file
+```
+```
 
 ## 🔌 API Endpoints
 
@@ -221,7 +198,6 @@ text
 "updated_at": "datetime"
 }
 
-text
 
 ### Documents Collection
 
@@ -240,7 +216,7 @@ text
 "uploaded_at": "datetime"
 }
 
-text
+
 
 🔧 Technologies Used
 Backend
@@ -280,7 +256,7 @@ Logs are stored in `logs/bot_gpt.log` with automatic rotation:
 2025-11-21 17:30:18 - llm_service - INFO - ✓ LLM response: 245 tokens
 2025-11-21 17:30:18 - main - INFO - ✓ Conversation created successfully
 
-text
+
 
 **Log Levels:**
 - ✓ INFO - Successful operations
@@ -300,7 +276,7 @@ TOP_K = 3
 LLM Model
 GROQ_MODEL = "llama-3.1-8b-instant" # or llama-3.1-70b-versatile
 
-text
+
 
 ## 🐳 Docker Deployment (Optional)
 
@@ -316,7 +292,7 @@ docker-compose logs -f
 Stop services
 docker-compose down
 
-text
+
 
 Services:
 - Backend: `http://localhost:8000`
@@ -337,7 +313,7 @@ curl -X POST http://localhost:8000/api/conversations
 List conversations
 curl http://localhost:8000/api/conversations
 
-text
+
 
 ### Using Swagger UI
 
@@ -353,7 +329,7 @@ docker ps # if using Docker
 or
 brew services list # if using Homebrew on macOS
 
-text
+
 
 ### Groq API Error
 
@@ -366,14 +342,14 @@ text
 Reinstall dependencies
 pip install --upgrade -r requirements.txt
 
-text
+
 
 ### Port Already in Use
 
 Change port in main.py
 uvicorn.run("main:app", host="0.0.0.0", port=8001) # Use 8001 instead
 
-text
+
 
 ## 📝 Design Decisions
 Why Sentence Transformers?
