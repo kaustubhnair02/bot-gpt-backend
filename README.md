@@ -115,7 +115,6 @@ bot-gpt-backend/
 ├── frontend/
 │   └── app.py             # Streamlit UI
 ├── Dockerfile             # Docker configuration (optional)
-├── docker-compose.yml     # Docker Compose (optional)
 └── README.md              # This file
 ```
 
@@ -278,19 +277,60 @@ GROQ_MODEL = "llama-3.1-8b-instant" # or llama-3.1-70b-versatile
 
 
 
-## 🐳 Docker Deployment (Optional)
+## 🐳 Docker Deployment
 
-### Build and Run with Docker Compose
+### Build and Run with Docker
 
-Create .env file with your API keys first
-Start all services
-docker-compose up -d
+```
+# 1. Start MongoDB
+docker run -d -p 27017:27017 --name mongodb mongo:latest
 
-View logs
-docker-compose logs -f
+# 2. Build backend image
+docker build -t bot-gpt-backend .
 
-Stop services
-docker-compose down
+# 3. Run backend (replace YOUR_GROQ_API_KEY)
+docker run -d \
+  -p 8000:8000 \
+  --name bot-gpt-backend \
+  -e GROQ_API_KEY=YOUR_GROQ_API_KEY \
+  -e MONGODB_URL=mongodb://host.docker.internal:27017 \
+  --link mongodb \
+  bot-gpt-backend
+
+# 4. Run frontend (in separate terminal)
+cd frontend
+streamlit run app.py
+```
+
+**Windows PowerShell:**
+```
+docker run -d -p 8000:8000 --name bot-gpt-backend -e GROQ_API_KEY=YOUR_GROQ_API_KEY -e MONGODB_URL=mongodb://host.docker.internal:27017 --link mongodb bot-gpt-backend
+```
+
+### Manage Containers
+
+```
+# View logs
+docker logs bot-gpt-backend
+
+# Stop containers
+docker stop bot-gpt-backend mongodb
+
+# Start containers
+docker start mongodb bot-gpt-backend
+
+# Remove containers
+docker rm bot-gpt-backend mongodb
+```
+
+**Services:**
+- Backend: `http://localhost:8000`
+- API Docs: `http://localhost:8000/docs`
+- Frontend: `http://localhost:8501`
+- MongoDB: `localhost:27017`
+```
+
+***
 
 
 
