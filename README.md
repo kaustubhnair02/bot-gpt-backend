@@ -96,7 +96,7 @@ streamlit run app.py
 
 Frontend will open at: `http://localhost:8501`
 
-````markdown
+
 ## 📁 Project Structure
 
 ```
@@ -118,7 +118,7 @@ bot-gpt-backend/
 ├── docker-compose.yml     # Docker Compose (optional)
 └── README.md              # This file
 ```
-```
+
 
 ## 🔌 API Endpoints
 
