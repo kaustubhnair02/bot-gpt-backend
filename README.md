@@ -242,7 +242,7 @@ text
 
 text
 
-🔧 Technologies Used (CORRECTED)
+🔧 Technologies Used
 Backend
 FastAPI - Modern async web framework
 
@@ -375,7 +375,7 @@ uvicorn.run("main:app", host="0.0.0.0", port=8001) # Use 8001 instead
 
 text
 
-## 📝 Design Decisions (CORRECTED)
+## 📝 Design Decisions
 Why Sentence Transformers?
 For this case study, sentence-transformers provides:
 
