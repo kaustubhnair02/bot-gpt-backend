@@ -35,7 +35,7 @@ def setup_logging():
         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
         handlers=[
             logging.FileHandler("logs/bot_gpt.log"),
-            logging.StreamHandler(sys.stdout)
+            logging.StreamHandler(sys.stdout) #prints logs to console
         ]
     )
 
